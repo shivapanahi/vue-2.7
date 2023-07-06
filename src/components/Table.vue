@@ -1,0 +1,59 @@
+<template>
+    <v-card  class=" mx-auto pa-2"  min-height="400"  outlined tile>
+        <v-simple-table>
+            <template v-slot:default>
+                <thead>
+                    <tr>
+                        <th class="text-right">
+                            نام کالا
+                        </th>
+                        <th class="text-right">
+                            تعداد
+                        </th>
+                        <th class="text-right">
+                            قیمت کل
+                        </th>
+                        <th class="text-right">
+                            حذف
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(product, i) in cartItems" :key="i">
+                        <td>{{ product.name }} </td>
+                        <td>{{ product.qty }} </td>
+                        <td>{{ (product.price * product.qty) }} </td>
+                        <td>
+                            <v-btn depressed color="primary" @click="remove(product.id)">
+                                حذف
+                            </v-btn>
+                        </td>
+                    </tr>
+                </tbody>
+            </template>
+        </v-simple-table>
+    </v-card>
+</template>
+
+<script lang="ts">
+import { computed, ref } from 'vue';
+import { useStore } from 'vue2-helpers/vuex';
+
+export default ({
+    setup() {
+        const store = useStore();
+        const cartItems = computed(() => {
+            return store.state.cart.cart;
+        });
+        const remove = (id: number) => {
+        store.dispatch('removeProduct', id)
+       }
+        return {
+            cartItems,
+            remove
+        }
+    }
+})
+</script>
+
+<style scoped></style>
