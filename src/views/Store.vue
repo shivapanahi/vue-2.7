@@ -40,7 +40,7 @@ export default Vue.extend({
       return store.state.stores.stores;
     });
     onMounted(() => {
-      store.dispatch('getStores', {userId:userName?.id})
+      store.dispatch('getStores', { userId: userName?.id })
     })
     return {
       store,

@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Header :store="route.query.store"></Header>
     <v-main>
       <v-container fluid class="">
         <v-row no-gutters  class="flex" justify="center"
@@ -21,10 +20,9 @@
 </template>
   
 <script lang="ts">
-import Vue, { computed, onMounted, ref } from 'vue'
+import Vue, {  onMounted, onUnmounted, ref } from 'vue'
 import { useStore } from 'vue2-helpers/vuex';
-import { Cart, Product, Store } from '@/types/models';
-import Header from "../components/Header.vue"
+import {  Product,  } from '@/types/models';
 import Table from "../components/Table.vue"
 import Products from "../components/Products.vue"
 import Finall from "../components/Finall.vue"
@@ -32,7 +30,6 @@ import { useRoute } from 'vue2-helpers/vue-router';
 
 export default Vue.extend({
   components: {
-    Header,
     Table,
     Products,
     Finall
@@ -46,6 +43,9 @@ export default Vue.extend({
         products.value = store.state.products
       }
       )
+    })
+    onUnmounted(() => {
+      store.dispatch('clear')
     })
     return {
       store,

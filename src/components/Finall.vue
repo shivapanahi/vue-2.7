@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto pa-2" min-height="400" outlined tile >
+    <v-card class="mx-auto pa-2" min-height="400" outlined tile>
         <p>قیمت کل:{{ totalPrice }}</p>
         <v-btn depressed color="primary" @click="sendData()">
             ارسال اطلاعات
@@ -27,10 +27,12 @@ export default ({
             });
             return totalPrice;
         });
-        const data = ref<Cart>({
-            totalPrice: totalPrice.value,
-            items: cartItems.value
-        })
+        const data = computed((): Cart => {
+            return {
+                totalPrice: totalPrice.value,
+                items: cartItems.value
+            };
+        });
         const sendData = () => {
             store.dispatch('sendData', data.value).then(() => {
                 Swal.fire({
@@ -53,7 +55,8 @@ export default ({
             cartItems,
             products,
             sendData,
-            totalPrice
+            totalPrice,
+            data
         }
     }
 })

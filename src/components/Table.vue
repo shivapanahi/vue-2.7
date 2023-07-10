@@ -1,5 +1,5 @@
 <template>
-    <v-card  class=" mx-auto pa-2"  min-height="400"  outlined tile>
+    <v-card class=" mx-auto pa-2" min-height="400" outlined tile>
         <v-simple-table>
             <template v-slot:default>
                 <thead>
@@ -21,8 +21,12 @@
                 <tbody>
                     <tr v-for="(product, i) in cartItems" :key="i">
                         <td>{{ product.name }} </td>
-                        <td>{{ product.qty }} </td>
-                        <td>{{ (product.price * product.qty) }} </td>
+                        <td>
+                            <v-text-field v-model="product.qty" required outlined dense></v-text-field>
+                        </td>
+                        <td>
+                            {{ (product.price * product.qty) }}
+                        </td>
                         <td>
                             <v-btn depressed color="primary" @click="remove(product.id)">
                                 حذف
@@ -46,8 +50,9 @@ export default ({
             return store.state.cart.cart;
         });
         const remove = (id: number) => {
-        store.dispatch('removeProduct', id)
-       }
+            store.dispatch('removeProduct', id)
+
+        }
         return {
             cartItems,
             remove
