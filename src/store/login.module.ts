@@ -13,8 +13,6 @@ const actions = {
   login(context:any, payload:any) {
     return new Promise((resolve, reject) => {
       apis.login(payload)
-      // axios.get(`http://localhost:3000/users`, { params: payload }
-      // )
         .then(({ data }) => {
           resolve(data);
           context.commit('SET_USER', data);

@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <v-main>
+      <div class="text-center text-h5 font-weight-bold" id="title">
+            <strong>محصولات</strong>
+      </div>
       <v-container fluid class="">
         <v-row no-gutters  class="flex" justify="center"
      > 
@@ -20,13 +23,13 @@
 </template>
   
 <script lang="ts">
-import Vue, {  onMounted, onUnmounted, ref } from 'vue'
+import Vue, {  onMounted, onUnmounted, ref, watch } from 'vue'
 import { useStore } from 'vue2-helpers/vuex';
 import {  Product,  } from '@/types/models';
 import Table from "../components/Table.vue"
 import Products from "../components/Products.vue"
 import Finall from "../components/Finall.vue"
-import { useRoute } from 'vue2-helpers/vue-router';
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute, useRouter } from 'vue2-helpers/vue-router';
 
 export default Vue.extend({
   components: {
@@ -38,6 +41,7 @@ export default Vue.extend({
     const store = useStore();
     const products = ref<Product[]>([]);
     const route = useRoute();
+    const router=useRouter()
     onMounted(() => {
       store.dispatch('getProducts').then(() => {
         products.value = store.state.products
@@ -50,7 +54,8 @@ export default Vue.extend({
     return {
       store,
       products,
-      route
+      route,
+      router
     }
   }
 })

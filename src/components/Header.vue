@@ -10,9 +10,8 @@
 </template>
 
 <script lang="ts" script>
-import { computed, defineComponent, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue2-helpers/vue-router';
-import { useStore } from 'vue2-helpers/vuex';
+import {  defineComponent } from 'vue'
+import { useRoute } from 'vue2-helpers/vue-router';
 
 
 export default defineComponent({
@@ -20,9 +19,7 @@ export default defineComponent({
         store: String,
     },
     setup(props) {
-        const router = useRouter();
         const route = useRoute()
-        const store = useStore();
         const user = JSON.parse(localStorage.getItem('user') ?? '{}')
         return {
             route,

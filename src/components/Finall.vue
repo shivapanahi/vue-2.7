@@ -1,7 +1,7 @@
 <template>
-    <v-card class="mx-auto pa-2" min-height="400" outlined tile>
-        <p>قیمت کل:{{ totalPrice }}</p>
-        <v-btn depressed color="primary" @click="sendData()">
+    <v-card class="mx-auto pa-2 d-flex flex-column mb-6  align-stretch   mb-6 " min-height="400" outlined tile>
+        <p class="ma-2 pa-2 align-self-center">قیمت کل:{{ totalPrice }}</p>
+        <v-btn class="ma-2 pa-2 mb-auto" depressed color="primary" @click="sendData()">
             ارسال اطلاعات
         </v-btn>
     </v-card>

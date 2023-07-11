@@ -21,8 +21,8 @@
                 <tbody>
                     <tr v-for="(product, i) in cartItems" :key="i">
                         <td>{{ product.name }} </td>
-                        <td>
-                            <v-text-field v-model="product.qty" required outlined dense></v-text-field>
+                        <td class="d-lg-flex bg-surface-variant">
+                            <v-text-field v-model="product.qty" required outlined dense class="ma-1 "></v-text-field>
                         </td>
                         <td>
                             {{ (product.price * product.qty) }}
