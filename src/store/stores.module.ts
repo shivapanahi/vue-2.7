@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import apis from "../services/apis"
 
 const state = {
   stores: [],
@@ -10,8 +9,7 @@ const getters = {};
 const actions = {
   getStores(context:any, payload:any) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/stores`,{params:payload} 
-      )
+      apis.stores(payload)
         .then(({ data }) => {
           resolve(data);
           context.commit('SET_STORES', data);

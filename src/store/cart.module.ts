@@ -1,5 +1,5 @@
 import CartService from "@/services/CartService";
-import axios from "axios";
+import apis from "../services/apis"
 
 
 const state = {
@@ -23,8 +23,7 @@ const actions = {
   },
   sendData(context: any, payload: any) {
     return new Promise((resolve, reject) => {
-      axios.post(`http://localhost:3000/carts`, payload
-      )
+      apis.carts(payload)
         .then(({ data }) => {
           resolve(data);
         })

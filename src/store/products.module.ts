@@ -1,4 +1,4 @@
-import axios from "axios";
+import apis from "../services/apis"
 
 
 const state = {
@@ -12,8 +12,7 @@ const getters = {
 const actions = {
     getProducts(context:any, payload:any) {
         return new Promise((resolve, reject) => {
-          axios.get(`http://localhost:3000/products`, payload
-          )
+          apis.products(payload)
             .then(({ data }) => {
               resolve(data);
               context.commit('SET_PRODUCTS', data);

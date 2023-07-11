@@ -1,4 +1,4 @@
-import axios from "axios";
+import apis from "../services/apis"
 
 
 const state = {
@@ -12,8 +12,9 @@ const getters = {
 const actions = {
   login(context:any, payload:any) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/users`, { params: payload }
-      )
+      apis.login(payload)
+      // axios.get(`http://localhost:3000/users`, { params: payload }
+      // )
         .then(({ data }) => {
           resolve(data);
           context.commit('SET_USER', data);
