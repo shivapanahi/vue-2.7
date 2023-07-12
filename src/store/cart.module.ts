@@ -10,7 +10,7 @@ const getters = {};
 
 const actions = {
   addProduct(context: any, payload: any) {
-    CartService.add(payload)
+    CartService.add(payload.product,payload.count)
     context.commit('SET_CART');
   },
   removeProduct(context: any, payload: any) {

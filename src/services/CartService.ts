@@ -4,7 +4,9 @@ const CART_KEY = "CART" as string;
 export const all = (): Product[] => {
   return JSON.parse(localStorage.getItem(CART_KEY) ?? "[]");
 };
-export const add = (product: Product) => {
+export const add = (product: Product,count:number) => {
+  console.log(product)
+  console.log(count)
   const currentCart=all()
     const i = currentCart.filter((item: Product) => item.id == product.id)[0] ?? {
       id: product.id,
@@ -12,7 +14,7 @@ export const add = (product: Product) => {
       price: product.price,
       qty: 0,
     }
-    i.qty = parseInt(i?.qty.toString()) + 1
+    i.qty = count ? count : parseInt(i?.qty.toString()) + 1
     const index = currentCart.findIndex((obj: Product) => obj.id === i.id);
     if (index > -1) {
       currentCart[index] = i;

@@ -22,7 +22,7 @@
                     <tr v-for="(product, i) in cartItems" :key="i">
                         <td>{{ product.name }} </td>
                         <td class="d-lg-flex bg-surface-variant">
-                            <v-text-field v-model="product.qty" required outlined dense class="ma-1 "></v-text-field>
+                            <v-text-field @keyup="addToCart(product)" v-model="product.qty" required outlined dense class="ma-1 "></v-text-field>
                         </td>
                         <td>
                             {{ (product.price * product.qty) }}
@@ -40,6 +40,7 @@
 </template>
 
 <script lang="ts">
+import { Product } from '@/types/models';
 import { computed, ref } from 'vue';
 import { useStore } from 'vue2-helpers/vuex';
 
@@ -51,11 +52,14 @@ export default ({
         });
         const remove = (id: number) => {
             store.dispatch('removeProduct', id)
-
+        }
+        const addToCart = (product: Product) => {
+            store.dispatch('addProduct',{product:product,count:product.qty})
         }
         return {
             cartItems,
-            remove
+            remove,
+            addToCart
         }
     }
 })

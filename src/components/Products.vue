@@ -25,7 +25,7 @@ export default ({
             return store.state.products.products;
         });
         const addToCart = (product: Product) => {
-            store.dispatch('addProduct', product)
+            store.dispatch('addProduct', {product:product,count:null})
         }
         onMounted(() => {
             store.dispatch('getProducts')
